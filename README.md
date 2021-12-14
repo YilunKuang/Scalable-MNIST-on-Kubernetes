@@ -1,8 +1,11 @@
-# 1 Kubernetes Clusters
+# Scalable-MNIST-on-Kubernetes
+This is a course project repository for the class NYU CSCI-GA 3033 Special Topics: Cloud and Machine Learning
 
 ---
 
-## Login
+## 1 Kubernetes Clusters
+
+### Login
 
 ```bash
 # Log in to your IBM Cloud account
@@ -13,9 +16,9 @@ ibmcloud ks cluster config --cluster c6hu044w0jh603bfh57g
 
 ```
 
-## Deploy the Server on Kubernetes Cluster
+### Deploy the Server on Kubernetes Cluster
 
-### server-all.yaml
+#### server-all.yaml
 
 ```yaml
 apiVersion: apps/v1
@@ -55,7 +58,7 @@ spec:
     targetPort: 5000
 ```
 
-## Docker for Client
+### Docker for Client
 
 ```bash
 # Build docker images
@@ -71,9 +74,9 @@ docker tag project2_client yilunkuang/project2-client:latest
 docker push yilunkuang/project2-client:latest
 ```
 
-## Deploy the Client on Kubernetes Cluster
+### Deploy the Client on Kubernetes Cluster
 
-### client-job.yaml
+#### client-job.yaml
 
 ```yaml
 apiVersion: batch/v1
@@ -98,7 +101,7 @@ spec:
           claimName: mnist-app-pvc
 ```
 
-### Deployment Command
+#### Deployment Command
 
 ```bash
 # (optional) If there are job requests
@@ -110,14 +113,14 @@ kubectl get pods
 kubectl get job
 ```
 
-### Debug
+#### Debug
 
 ```bash
 kubectl logs [POD_NAME]
 # kubectl logs request--1-n8jtc
 ```
 
-### Go into the /mount-path/ directory to retrieve the file
+#### Go into the /mount-path/ directory to retrieve the file
 
 ```bash
 kubectl exec -it my-deployment-86cf478d55-9qz9r -- bash
@@ -125,11 +128,11 @@ cd /mount-path/
 cat sample.txt
 ```
 
-# 2 NYU Greene GPU Cluster
+## 2 NYU Greene GPU Cluster
 
 ---
 
-## Server
+### Server
 
 ```bash
 ssh yk2516@greene.hpc.nyu.edu
@@ -141,7 +144,7 @@ singularity exec --nv --overlay $SCRATCH/overlay-50G-10M.ext3:ro /scratch/work/p
 python server_gpu.py
 ```
 
-## Client
+### Client
 
 ```bash
 # attempt to POST at the login node
@@ -152,7 +155,7 @@ srun --nodes=1 --tasks-per-node=1 --cpus-per-task=1 --mem=32GB --time=2:00:00 --
 python3 client_gpu.py > client_log.txt
 ```
 
-# 3 Data Processing and Plotting
+## 3 Data Processing and Plotting
 
 ```bash
 # Copy the files from NYU Greene HPC to local directory, and performs the following
