@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: request
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - image: yilunkuang/project2-client:latest
+        name: client-request
+        ports:
+          - containerPort: 5000  
+        volumeMounts:
+        - name: my-volume
+          mountPath: /mount-path
+      volumes:
+      - name: my-volume
+        persistentVolumeClaim:
+          claimName: mnist-app-pvc
+# ---
+# apiVersion: apps/v1
+# kind: Job
+# metadata:
+#   name: request
+#   labels:
+#     app: request
+# spec:
+#   template:
+#     metadata:
+#       labels:
+#         app: api
+#     spec:
+#       containers:
+#       - name: request
+#         image: yilunkuang/project2-client:latest
+#         ports:
+#         - containerPort: 5000
