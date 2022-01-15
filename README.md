@@ -13,7 +13,7 @@ Author: Charlie Chen, Mark Kuang.
 ibmcloud login -a cloud.ibm.com -r us-east -g 2021-fall-student-yk2516
 
 # Set the Kubernetes context to your cluster for this terminal session.
-ibmcloud ks cluster config --cluster c6hu044w0jh603bfh57g
+ibmcloud ks cluster config --cluster [CLUSTER-ID]
 
 ```
 
