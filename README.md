@@ -1,7 +1,7 @@
 # Scalable-MNIST-on-Kubernetes
 This is a course project repository for the class NYU CSCI-GA 3033 Special Topics: Cloud and Machine Learning. 
 
-Author: Charlie Chen, Mark Kuang.
+Author: Charlie Zixi Chen, Mark Yilun Kuang.
 
 
 ## 1 Kubernetes Clusters
